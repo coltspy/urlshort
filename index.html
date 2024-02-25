@@ -1,14 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>URL Shortener</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>URL Shortener</h1>
-    <form action="/shorten" method="post">
-        URL: <input type="text" name="url"><br>
-        Custom Alias (optional): <input type="text" name="customAlias"><br>
+    <form id="urlShortenerForm">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" required><br>
+        <label for="customAlias">Custom URL (optional):</label>
+        <input type="text" id="customAlias" name="customAlias"><br>
+        <select name="expiration">
+            <option value="1day">1 Day</option>
+            <option value="1month">1 Month</option>
+            <option value="1year">1 Year</option>
+            <option value="lifetime">Lifetime</option>
+       </select>
         <input type="submit" value="Shorten">
     </form>
+    <div id="result"></div> <!-- Placeholder for the shortened URL -->
+
+    <script>
+        document.getElementById('urlShortenerForm').onsubmit = function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            var urlEncodedData = new URLSearchParams(formData).toString();
+
+            fetch('/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: urlEncodedData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
+    </script>
+    
 </body>
 </html>
