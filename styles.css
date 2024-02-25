@@ -1,0 +1,41 @@
+body {
+    font-family: 'Rubik', sans-serif; /* Apply Rubik as the main font */
+    font-size: 25px; 
+    background-image: url('ttt.png'); /* Your image */
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    position: relative; /* Make body a positioning context */    
+    color: white; /* Set text color for the entire page */ 
+
+
+
+}
+h1 {
+    font-size: 3em;  /* Larger heading */
+
+    color: #ffffff; /* Dark, forest green */
+
+ }
+body::before { 
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Your overlay color and opacity */
+    z-index: -1; /* Place the overlay behind other content */
+}
+
+ #urlShortenerForm label {
+    font-weight: 400; /* Slightly bolder labels */ 
+
+}
+
+
