@@ -116,7 +116,7 @@ func main() {
 				return
 			}
 
-			fullURL := "https://2o.wtf/s/" + shortURL
+			fullURL := "https://urlshort-five.vercel.app/s/" + shortURL
 			fmt.Fprintf(w, "Shortened URL: <a href=\"%s\" target=\"_blank\">%s</a>", fullURL, fullURL)
 
 		}
